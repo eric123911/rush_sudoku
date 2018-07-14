@@ -1,49 +1,50 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define INCONNU 0
+# define NONE 0
 
-int grille[81];
-int compteur_noeuds;
+int	board[81];
+int	k_count;
 
-/* Lire la grille sur stdin. La grille est codée avec uniquement les
- *  caractères 0->9 et . pour une case inconnue. Les autres caracteres
- *   sont ignores. */
-void lire_grille(char **ligne)
+/* Lis la grille. La grille est codée avec uniquement les caractères (0 -> 9)
+** et . pour un caractère inconnu. Les autres caracteres sont ignores. */
+void	read_board(char **line)
 {
-	char c;
+	char	c;
 	int	i;
 	int	j;
-	int k;
+	int	k;
 
-	i = 1, k = 0;
+	i = 1;
+	k = 0;
 	while (k < 81)
 	{
 		j = 0;
 		while (j < 9)
 		{
-			c = ligne[i][j];
+			c = line[i][j];
 			if (c >= '1' && c <= '9')
-				grille[k++] = c - '0';
+				board[k++] = c - '0';
 			else if (c == '.')
-				grille[k++] = INCONNU;
+			  	board[k++] = NONE;
+			/*
 			else if (!((c >= '1' && c <= '9') || c == '.'))
 			{
-				fprintf(stderr, "I segfaulted è.é\n");
-				exit(1);
+				printf("J'ai segfault è.é\n");
+				return (0);
 			}
+			*/
 			j++;
 		}
 		i++;
 	}
 }
 
-/* afficher la grille
-** courante sur stdout */
-void afficher_grille()
+/* afficher la grille courante */
+void	show_board(void)
 {
-	int c;
-	int l;
+	int	c;
+	int	l;
 	int	k;
 	
 	l = 0;
@@ -53,10 +54,10 @@ void afficher_grille()
 		while (c < 9)
 		{
 			k = l * 9 + c;
-			if (grille[k] == INCONNU)
+			if (board[k] == NONE)
 				printf(". ");
 			else
-				printf("%c ", grille[k] + '0');
+				printf("%c ", board[k] + '0');
 			c++;
 		}
 		printf("\n");
@@ -66,7 +67,7 @@ void afficher_grille()
 }
 
 /* verifier toutes les contraintes qui font intervenir la case i */
-int verifier_constraintes(int i)
+int	check_constraint(int i)
 {
 	int l = i / 9;
 	int c = i % 9;
@@ -80,20 +81,20 @@ int verifier_constraintes(int i)
 	int lr2;
 	int cr2;
 
-	/* verifier la colonne contenant la case i */
+	/* verifier la ligne contenant la case i */
 	l2 = 0;
 	while (l2 < 9)
 	{
-		if (l2 != l && grille[l2 * 9 + c] == grille[i])
+		if (l2 != l && board[l2 * 9 + c] == board[i])
 			return 0;
 		l2++;
 	}
 
-	/* verifier la ligne contenant la case i */
+	/* verifier la colone contenant la case i */
 	c2 = 0;
 	while (c2 < 9)
 	{
-		if (c2 != c && grille[l * 9 + c2] == grille[i])
+		if (c2 != c && board[l * 9 + c2] == board[i])
 			return 0;
 		c2++;
 	}
@@ -106,7 +107,7 @@ int verifier_constraintes(int i)
 		while (cr2 < 3)
 		{
 			if ((lr2 != lr || cr2 != cr) &&
-					grille[(lb * 3 + lr2) * 9 + (cb * 3 + cr2)] == grille[i])
+					board[(lb * 3 + lr2) * 9 + (cb * 3 + cr2)] == board[i])
 				return 0;
 			cr2++;
 		}
@@ -117,41 +118,41 @@ int verifier_constraintes(int i)
 
 
 /* resolution par backtracking, en supposant que toutes les cases
- *  d'indices j<i ont deja ete remplies */
-void backtrack(int i)
+**  d'indices j<i ont deja ete remplies */
+void	backtrack(int i)
 {
 	if (i == 81)
 	{
-		afficher_grille();			/* afficher la solution */
+		show_board();			/* afficher la solution */
 		return;
 	}
-	if (grille[i] != INCONNU)
+	if (board[i] != NONE)
 	{
-		backtrack(i + 1);			/* case deja remplie */
+		backtrack(i++);			/* case deja remplie */
 		return;
 	}
-	compteur_noeuds++;
-	grille[i] = 1;
-	while (grille[i] <= 9)
+	k_count++;
+	board[i] = 1;
+	while (board[i] <= 9)
 	{
-		if (verifier_constraintes(i))
-			backtrack(i + 1);
-		grille[i]++;
+		if (check_constraint(i))
+			backtrack(i++);
+		board[i]++;
 	}
-	grille[i] = INCONNU;			/* laisser la grille dans l'etat
-                                    ** ou on l'a trouvee en entrant */
+	board[i] = NONE;	/* laisser la grille dans l'etat
+                                ** ou on l'a trouvee en entrant */
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc != 10)
 	{
 		printf("Erreur\n");
 		return (0);
 	}
-	lire_grille(argv);
-	afficher_grille();
+	read_board(argv);
+	show_board();
 	backtrack(0);
-	printf("%d noeuds cherches\n", compteur_noeuds);
+	printf("%d noeuds cherchés\n", k_count);
 	return 0;
 }
