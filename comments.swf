@@ -1,0 +1,55 @@
+6c6
+< /*   By: eschnell <eschnell@student.le-101.fr>      +:+   +:    +:    +:+     */
+---
+> /*   By: eschnell <eschnell@student.le-101.>        +:+   +:    +:    +:+     */
+9c9
+< /*   Updated: 2018/07/15 19:31:09 by eschnell    ###    #+. /#+    ###.fr     */
+---
+> /*   Updated: 2018/07/15 18:57:09 by eschnell    ###    #+. /#+    ###.fr     */
+16a17
+> int	g_count;
+42a44,45
+> /* afficher la grille
+> ** courante sur stdout */
+63,64c66
+< 				if (c != 8)
+< 					WRITE(" ", 1);
+---
+> 				WRITE(" ", 1);
+68a71
+> 	WRITE("\n", 1);
+70a74
+> /** verifie les lignes et colonnes, respectivement **/
+95a100,101
+> /* verifier toutes les contraintes "dans l'ordre: Lignes puis Colonnes
+> ** puis Carres (carre de 3x3)" qui font intervenir la case i */
+123c129,131
+< void	backtrack(int i)
+---
+> /* resolution par backtracking, en supposant que toutes les cases
+> ** d'indices j<i ont deja ete remplies */
+> int		backtrack(int i)
+127,128c135,136
+< 		show_board();
+< 		return ;
+---
+> 		show_board();		/* afficher la solution */
+> 		return (g_count);
+129a138
+> 
+132,133c141,142
+< 		backtrack(i + 1);
+< 		return ;
+---
+> 		backtrack(i + 1);		/* case deja remplie */
+> 		return (g_count);
+134a144,145
+> 
+> 	g_count++;
+142,143c153,155
+< 	g_board[i] = NONE;
+< 	return ;
+---
+> 	g_board[i] = NONE;		/* laisser la grille dans l'etat ou on
+> 							   l'a trouvee en entrant */
+> 	return (g_count);
