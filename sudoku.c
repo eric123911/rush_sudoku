@@ -50,19 +50,18 @@ void	show_board(void)
 	l = -1;
 	while (l++ < 8)
 	{
+		if (l == 3 || l == 6)
+			WRITE("------+-------+------\n", 22);
 		c = -1;
 		while (c++ < 8)
 		{
 			k = l * 9 + c;
-			if (g_board[k] == NONE)
-				WRITE(". ", 1);
-			else
-			{
-				nb = g_board[k] + '0';
-				WRITE(&nb, 1);
-				if (c != 8)
-					WRITE(" ", 1);
-			}
+			if (c == 3 || c == 6)
+				WRITE("| ", 3);
+			nb = g_board[k] + '0';
+			WRITE(&nb, 1);
+			if (c != 8)
+				WRITE(" ", 1);
 		}
 		WRITE("\n", 1);
 	}
