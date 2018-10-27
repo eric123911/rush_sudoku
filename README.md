@@ -18,4 +18,4 @@
 | ![Imgur](https://i.imgur.com/84OBi0W.png "Grid Screen")                                                                                                               |
 |                                                                                                                                                                       |
 | Result                                                                                                                                                                |
-| ![Imgur](https://i.imgur.com/rxQFZqz.png "Shell Screen")                                                                                                              |
+| ![Imgur](https://i.imgur.com/rxQFZqz.png?1 "Shell Screen")                                                                                                            |
