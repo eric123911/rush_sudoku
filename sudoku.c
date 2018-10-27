@@ -58,7 +58,7 @@ void	show_board(void)
 		{
 			k = l * 9 + c;
 			if (c == 0 || c == 3 || c == 6)
-				WRITE("| ", 3);
+				WRITE("| ", 2);
 			nb = g_board[k] + '0';
 			WRITE(&nb, 1);
 			if (c != 8)
