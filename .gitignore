@@ -1,0 +1,8 @@
+.#*
+#*#
+*~
+*.a
+*.o
+*.pdf
+a.out
+sudoku_resolver
