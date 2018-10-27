@@ -12,12 +12,12 @@
 
 **N.B.** *Replace empty cells by `.`*
 
-| Example:																																							                               |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------                              |
-| For a given grid                                                                                                                                                                                   |
-| <dl><blockquote class="imgur-embed-pub" lang="en" data-id="a/OTxEOJP"><a href="//imgur.com/OTxEOJP"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script></dl> |
-|                                                                                                                                                                                                    |
-| Result                                                                                                                                                                                             |
-| ![alt text](https://drive.google.com/file/d/1azdG5Hblvcc-WVA4lvKHKTXm5mcZgWfW/view?usp=sharing "Shell Screen")                                                                                     |
-|                                                                                                                                                                                                    |
+| Example:																																							  |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| For a given grid                                                                                                                                                      |
+| [Imgur](https://i.imgur.com/84OBi0W.png)                                                                                                                              |
+|                                                                                                                                                                       |
+| Result                                                                                                                                                                |
+| ![alt text](https://drive.google.com/file/d/1azdG5Hblvcc-WVA4lvKHKTXm5mcZgWfW/view?usp=sharing "Shell Screen")                                                        |
+|                                                                                                                                                                       |
 
