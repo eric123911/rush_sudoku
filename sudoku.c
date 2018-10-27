@@ -6,7 +6,7 @@
 /*   By: eschnell <eschnell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/15 18:18:42 by eschnell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/15 19:31:09 by eschnell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/21 10:07:20 by eschnell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,23 +48,25 @@ void	show_board(void)
 	int nb;
 
 	l = -1;
+	WRITE("+-------+-------+-------+\n", 26);
 	while (l++ < 8)
 	{
 		if (l == 3 || l == 6)
-			WRITE("------+-------+------\n", 22);
+			WRITE("|-------+-------+-------|\n", 26);
 		c = -1;
 		while (c++ < 8)
 		{
 			k = l * 9 + c;
-			if (c == 3 || c == 6)
+			if (c == 0 || c == 3 || c == 6)
 				WRITE("| ", 3);
 			nb = g_board[k] + '0';
 			WRITE(&nb, 1);
 			if (c != 8)
 				WRITE(" ", 1);
 		}
-		WRITE("\n", 1);
+		WRITE(" |\n", 3);
 	}
+	WRITE("+-------+-------+-------+\n", 26);
 }
 
 int		check_contraint_aux(int i)
@@ -139,5 +141,4 @@ void	backtrack(int i)
 		g_board[i]++;
 	}
 	g_board[i] = NONE;
-	return ;
 }
